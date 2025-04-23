@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>카드뉴스 슬라이드</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f9f9f9;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    .slider {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .slides {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slides img {
+      flex-shrink: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      background: #fff;
+    }
+    .nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    .nav button {
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <div class="slides" id="slideContainer">
+      <img src="https://resource2018.nuskinkorea.co.kr/upload/20250423/Nuskin1_e1e1a16d-15ab-4f30-8a14-eefd1f8722d5.png" alt="Slide 1"><img src="https://resource2018.nuskinkorea.co.kr/upload/20250423/Nuskin2_feea7a7a-ae5d-4216-bd74-4bd411c7756c.png" alt="Slide 2"><img src="https://resource2018.nuskinkorea.co.kr/upload/20250423/Nuskin3_fbbdff47-159a-443f-b6be-338abf220b93.png" alt="Slide 3">
+    </div>
+    <div class="nav">
+      <button onclick="prevSlide()">&#10094;</button>
+      <button onclick="nextSlide()">&#10095;</button>
+    </div>
+  </div>
+  <script>
+    let currentSlide = 0;
+    const slides = document.getElementById('slideContainer');
+    const totalSlides = 3;
+    function showSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      currentSlide = index;
+      slides.style.transform = `translateX(-${index * 100}vw)`;
+    }
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+  </script>
+</body>
+</html>
